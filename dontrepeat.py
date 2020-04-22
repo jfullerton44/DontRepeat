@@ -2,14 +2,16 @@ import boto3
 from boto3.dynamodb.conditions import Key, Attr
 import os
 import random
+tableName = 'Ryan'
 
+print("So far you have entered ",table.item_count,"unique words")
 newWords = input("Enter new words: ")
 words = newWords.split(' ')
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table(tableName)
 while( newWords != ''):
     for word in words:
         if word is not None and word != '':
-            dynamodb = boto3.resource('dynamodb')
-            table = dynamodb.Table('Ryan')
             response = table.query(
                 KeyConditionExpression=Key('name').eq(word)
             )
